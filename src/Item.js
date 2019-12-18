@@ -20,6 +20,7 @@ const ListItem = styled.p`
 const Li = styled.li `
      border-bottom: 1px solid rgba(217, 188, 186, 0.25);
      padding: 20px 0;
+     position: relative;
 `
 
 const Border = styled.span `
@@ -32,10 +33,19 @@ const Border = styled.span `
     display: ${props => props.isDone ? `inline-block` : `none`};
 `
 
+const Xicon = styled.span `
+     color: rgba(163,146,145,0.6);
+     font-size: 18px;
+     display: ${props => props.isDone ? `inline-block` : `none`};
+     position: absolute;
+     transform: translate(-50%, -50%);
+     top: 50%;
+     right: 0;
+`
 
-const Item = () => {
+
+const Item = (props) => {
     const [isDone, setIsDone] = React.useState(false);
-
     const toggleIsDone = () => setIsDone(!isDone)
 
     return (
@@ -46,7 +56,9 @@ const Item = () => {
                     <FontAwesomeIcon icon={['far', 'check-circle']} />:
                     <FontAwesomeIcon icon={['far', 'circle']} />
                 }
-            </ToggleBtn><ListItem isDone={isDone} onClick={toggleIsDone}><Border isDone={isDone} onClick={toggleIsDone}></Border>サンプル</ListItem>
+            </ToggleBtn>
+            <ListItem isDone={isDone} onClick={toggleIsDone}><Border isDone={isDone} onClick={toggleIsDone}></Border>{props.text}</ListItem>
+            <Xicon isDone={isDone} onClick={toggleIsDone}><FontAwesomeIcon icon={['fas', 'times']} /></Xicon>
         </Li>
     )
 }

@@ -9,13 +9,15 @@ const Wrapper = styled.ul `
     padding: 0px;
 `
 
-const List = () => {
+const List = (props) => {
+    const todos = props.todos.map((todo) => {
+        return (
+            <Item text={todo.text} />
+        )
+    })
     return (
         <Wrapper>
-            <Item />
-            <Item />
-            <Item />
-            <Item />
+            {todos}
         </Wrapper>
     )
 }
