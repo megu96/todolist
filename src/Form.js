@@ -18,16 +18,17 @@ const Form = (props) => {
 
     const [value, setValue] = React.useState('');
 
-
-    return (
-    <FormWrapper onSubmit={(e)=> {
+    const handleSubmit = (e) => {
         e.preventDefault()
         if(!value){
             return
         }
         props.addTodo(value)
         setValue('')
-    }}>
+    }
+
+    return (
+    <FormWrapper onSubmit={handleSubmit}>
     <Icon type="submit"><FontAwesomeIcon icon={['fas', 'plus']} /></Icon>
     <input type="text"
     onChange = {(e) => {setValue(e.target.value)}}
